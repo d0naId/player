@@ -1,7 +1,7 @@
 # player
-chat bot for telegram
+chat bot for telegram \n
 
-README.md	 - файл с описанием
+README.md	 - файл с описанием\n
 SQLighter.py	модуль с написаным классом для работы с БД SQL Lite 
 all_music_list.sql	sql скрипт для создания пустой БД
 config.py	файл конфигурации
