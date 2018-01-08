@@ -24,6 +24,9 @@ def generate_markup(list_items = ['плейлист','исполнитель','�
         markup.add(item)
     return markup
 
+def step():
+    return 'step'
+
 def finish_user_game(chat_id,user_id):
     """
     Заканчиваем игру текущего пользователя и удаляем правильный ответ из хранилища
