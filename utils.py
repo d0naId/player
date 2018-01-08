@@ -2,15 +2,18 @@ import shelve
 from config import shelve_name, shelve_name_field
 from telebot import types
 import sqlite3
-def set_user_load(chat_id,user_id,r):
+def set_user_load(chat_id,user_id,r): # Юрик добарь коммент, я туплю
     with shelve.open(shelve_name) as storage:
         """
         ключу id чата и id пользователя ставится в соответствие статус загрузки аудио
         """
         storage[str(chat_id)+str(user_id)] = [True,r] 
-def game_chek(message):
+def game_chek(message): # Юрик добарь коммент, я туплю
     with shelve.open(shelve_name) as storage:
         return str(message.chat.id)+str(message.from_user.id) in storage.keys()
+
+def print_xyz():
+    return 'xyz'
 
 def generate_markup():
     """
