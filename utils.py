@@ -4,15 +4,13 @@ from telebot import types
 import sqlite3
 def set_user_load(chat_id,user_id,r):
     with shelve.open(shelve_name) as storage:
-        """
-        ключу id чата и id пользователя ставится в соответствие статус загрузки аудио
-        """
+        # ключу id чата и id пользователя ставится в соответствие статус загрузки аудио и вектор r
         storage[str(chat_id)+str(user_id)] = [True,r] 
 def game_chek(message):
     with shelve.open(shelve_name) as storage:
         return str(message.chat.id)+str(message.from_user.id) in storage.keys()
 
-def generate_markup():
+def generate_markup(list_items = ['плейлист','исполнитель','название','теги','ой все'] ):
     """
     Создаем кастомную клавиатуру для выбора ответа
     :param right_answer: Правильный ответ
@@ -20,17 +18,13 @@ def generate_markup():
     :return: Объект кастомной клавиатуры
     """
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
-    list_items = ['плейлист','исполнитель','название','теги','ой все'] 
+    #list_items = ['плейлист','исполнитель','название','теги','ой все'] 
     # Заполняем разметку элементами
     for item in list_items:
         markup.add(item)
     return markup
 
 def finish_user_game(chat_id,user_id):
-    """
-    Нужно внести в БД запись о результате пользователя
-    """
-    
     """
     Заканчиваем игру текущего пользователя и удаляем правильный ответ из хранилища
     :param chat_id: id юзера
